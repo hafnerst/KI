@@ -1,12 +1,14 @@
 package Puzzle;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-
+import Algo.AH1Algo;
+import Algo.AH2Algo;
 import Algo.BFSAlgo;
+import Algo.DFSAlgo;
+import Algo.IDAlgo;
 
 
 public class Puzzle {
@@ -27,21 +29,27 @@ public class Puzzle {
     
     public void solve() {
         if(searchAlgo == 1) {
-            BFSAlgo bfsAlgo;
-            bfsAlgo = new BFSAlgo();
+            BFSAlgo bfsAlgo= new BFSAlgo();
             bfsAlgo.solvePuzzle(queue, goalState);
 
         } else if(searchAlgo == 2) {
+            DFSAlgo dfsAlgo= new DFSAlgo();
+            String returnValue = dfsAlgo.solvePuzzle(initialState, goalState);
+            System.out.println(returnValue);
 
         } else if(searchAlgo == 3) {
-
-            
+        	IDAlgo idAlgo = new IDAlgo();
+        	idAlgo.solvePuzzle(initialState, goalState);
+        	
         } else if(searchAlgo == 4) {
-   
-        
+        	AH1Algo ah1Algo = new AH1Algo();
+        	String returnValue = ah1Algo.solvePuzzle(initialState, goalState);
+        	System.out.println(returnValue);
         
         } else if(searchAlgo == 5) {
-                
+        	AH2Algo ah2Algo = new AH2Algo();
+        	String returnValue = ah2Algo.solvePuzzle(initialState, goalState);
+        	System.out.println(returnValue); 
         
         
         } else {
@@ -73,13 +81,13 @@ public class Puzzle {
         //int[] input = {4,1,2,5,8,3,7,0,6};    
         
         /* 8 Ebene */
-        int[] input = {0,5,2,1,8,3,4,7,6};
+        //int[] input = {0,5,2,1,8,3,4,7,6};
         
         /* 12-Ebene */
         //int[] input = {1,2,3,4,5,7,8,6,0}; 
         
         /* 20-Ebene */
-        //int[] input = {2,5,0,1,4,8,7,3,6};
+        int[] input = {2,5,0,1,4,8,7,3,6};
             
         
         /* OutOfMemoryError: GC overhead limit exceeded */

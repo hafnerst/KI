@@ -23,7 +23,6 @@ public class BFSAlgo {
 		neueKnoten = new LinkedList<State>();
 		while(!queue.isEmpty())
 		{
-			System.out.println("Größe der queue: "+queue.size());
 			curState = queue.poll();
 			System.out.println(curState.toString());
 			curState.incSteps();
@@ -40,6 +39,7 @@ public class BFSAlgo {
 		}
 		if(neueKnoten.size() > 0)
 		{
+			System.out.println("Ebene Nr. "+ (curState.getDepth()+1));
 			this.solvePuzzle(neueKnoten, goalState);
 		}
 		else 

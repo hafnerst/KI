@@ -3,10 +3,10 @@ package Puzzle;
 import java.util.Arrays;
 
 
-public class State {
+public class State implements Comparable<State>{
     public int[] array = new int[9];
     public int blankIndex;
-    private int depth;
+    private int depth, h, g;
 
     // Anfangsknoten wird incrementiert deshalb -1
     private static int steps = -1;
@@ -18,6 +18,7 @@ public class State {
         this.blankIndex = getIndex(input, 0);
         this.previous = null;
         this.depth = 0;
+        this.g=0;
     }
     
     public State(State previous, int blankIndex) {
@@ -26,6 +27,7 @@ public class State {
         this.array[blankIndex] = 0;
         this.blankIndex = blankIndex;
         this.depth = previous.depth + 1;
+        this.g = previous.g + 1;
         this.previous = previous;
     }
     
@@ -70,4 +72,67 @@ public class State {
     public void incSteps() {
         steps++;
     }
+    
+    public int getH()
+    {
+    	return h;
+    }
+    
+    public int getF()
+    {
+    	return h+g;
+    }
+    
+    public void berechneH1(State goalState) 
+    {
+        int counter = 0;
+        for(int i = 0; i < array.length; i++) 
+        {
+            if(goalState.array[i] != this.array[i]) 
+            {
+                counter++;
+            }
+        }
+        this.h = counter;
+    }
+    
+    private int getArrayIndex(int[] array, int number) 
+    {
+        for(int i = 0; i < array.length; i++) 
+        {
+            if(number == array[i]) 
+            {
+                return i;
+            }   
+        }
+        return -1;
+    }
+    
+    public void berechneH2(State goalState) 
+    {
+        int sum = 0;
+        for(int i = 1; i < array.length; i++) 
+        {
+            int indexState = getArrayIndex(array,i);
+            int indexGoal = getArrayIndex(goalState.array,i);
+            
+            if(indexState != indexGoal) 
+            {
+                int xState = indexState % 3;
+                int yState = indexState / 3;
+                
+                int xGoalState = indexGoal % 3;
+                int yGoalState = indexGoal / 3;
+                
+                sum += Math.abs((xState - xGoalState)) + Math.abs((yState - yGoalState));
+            }
+        }
+        this.h = sum;
+    }
+            
+    
+	public int compareTo(State o) 
+	{
+		return this.getF() - o.getF();
+	}
 }
