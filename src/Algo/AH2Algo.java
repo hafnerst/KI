@@ -24,19 +24,24 @@ public class AH2Algo
 			
 			nextState = neueKnoten.poll();
 			
-			System.out.println(nextState);
-			System.out.println("Aktueller H-Wert: "+nextState.getH());
 			nextState.incSteps();
 			
 			
 			
 			if(nextState.isSolved(goalState))
 			{
+				int depth = 0;
+				System.out.println(nextState);
+				while(nextState.getPrevious() != null)
+				{
+					System.out.println(nextState.getPrevious());
+					nextState = nextState.getPrevious();
+					depth++;
+				}
+				System.out.println("Tiefe: "+depth);
 				System.out.println("Anzahl Schritte: " + nextState.getSteps());
-				System.out.println("f: "+nextState.getF());
 				return "Lösung gefunden";
 			}
-			
 			this.addToQueue(Move.left(nextState), goalState);
 			this.addToQueue(Move.right(nextState), goalState);
 			this.addToQueue(Move.down(nextState), goalState);

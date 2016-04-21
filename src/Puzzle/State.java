@@ -73,6 +73,10 @@ public class State implements Comparable<State>{
         steps++;
     }
     
+    public State getPrevious() {
+    	return this.previous;
+    }
+    
     public int getH()
     {
     	return h;
@@ -88,7 +92,7 @@ public class State implements Comparable<State>{
         int counter = 0;
         for(int i = 0; i < array.length; i++) 
         {
-            if(goalState.array[i] != this.array[i]) 
+            if(goalState.array[i] != this.array[i] && this.array[i] > 0) 
             {
                 counter++;
             }

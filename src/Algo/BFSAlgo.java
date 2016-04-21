@@ -24,10 +24,18 @@ public class BFSAlgo {
 		while(!queue.isEmpty())
 		{
 			curState = queue.poll();
-			System.out.println(curState.toString());
 			curState.incSteps();
 			if(curState.isSolved(goalState))
 			{
+				int depth = 0;
+				System.out.println(curState);
+				while(curState.getPrevious() != null)
+				{
+					System.out.println(curState.getPrevious());
+					curState = curState.getPrevious();
+					depth++;
+				}
+				System.out.println("Tiefe: "+depth);
 				System.out.println("Lösung gefunden");
 				System.out.println("Anzahl Schritte: " + curState.getSteps());
 				return;
@@ -39,7 +47,6 @@ public class BFSAlgo {
 		}
 		if(neueKnoten.size() > 0)
 		{
-			System.out.println("Ebene Nr. "+ (curState.getDepth()+1));
 			this.solvePuzzle(neueKnoten, goalState);
 		}
 		else 

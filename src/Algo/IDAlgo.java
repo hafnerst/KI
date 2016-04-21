@@ -15,7 +15,6 @@ public class IDAlgo
 		int limit = 0;
 		do
 		{
-			System.out.println("Tiefenschranke: "+limit);
 			result = depthSearch(curState, goalState, 0, limit);
 			limit++;
 		} while(!result.equals("Lösung gefunden"));
@@ -25,10 +24,15 @@ public class IDAlgo
 	{
 		this.nextState = curState;
 		this.nextState.incSteps();
-		System.out.println(this.nextState.toString());
 		
 		if(this.nextState.isSolved(goalState))
 		{
+			System.out.println(nextState);
+			while(nextState.getPrevious() != null)
+			{
+				System.out.println(nextState.getPrevious());
+				nextState = nextState.getPrevious();
+			}
 			System.out.println("Anzahl Schritte: " + nextState.getSteps() + " Tiefe: " + depth + " Grenze: " + limit);
 			return "Lösung gefunden";
 		}

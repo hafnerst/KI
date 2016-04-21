@@ -66,7 +66,7 @@ public class Puzzle {
         //int[] input = {1,2,3,4,5,6,7,0,8};
         
         /* 2-Ebene */
-        //int[] input = {1,2,3,4,5,6,0,7,8};
+        int[] input = {1,2,3,4,5,6,0,7,8};
         
         /* 3-Ebene | Uebungsaufgabe */
         //int[] input = {1,0,3,4,2,6,7,5,8};
@@ -84,10 +84,10 @@ public class Puzzle {
         //int[] input = {0,5,2,1,8,3,4,7,6};
         
         /* 12-Ebene */
-        //int[] input = {1,2,3,4,5,7,8,6,0}; 
+    	//int[] input = {1,2,3,4,5,7,8,6,0}; 
         
         /* 20-Ebene */
-        int[] input = {2,5,0,1,4,8,7,3,6};
+        //int[] input = {2,5,0,1,4,8,7,3,6};
             
         
         /* OutOfMemoryError: GC overhead limit exceeded */
